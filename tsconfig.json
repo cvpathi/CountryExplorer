@@ -1,0 +1,15 @@
+{
+  "extends": "@tsconfig/react-native/tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "paths": {
+      "@api": ["./api"],
+      "@components": ["./components"],
+      "@constants": ["./constants"],
+      "@navigation": ["./navigation"],
+      "@redux": ["./redux"],
+      "@screens": ["./screens"]
+    }
+  },
+  "exclude": ["node_modules", "dist"]
+}
