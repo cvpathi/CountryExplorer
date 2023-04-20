@@ -1,6 +1,6 @@
 # CountryExplorer
 
-## apk Link - https://drive.google.com/file/d/1JUzy91AMzZWy07JnXXsioMByc6P6WKWB/view?usp=drivesdk 
+## apk Link - https://drive.google.com/file/d/1JUzy91AMzZWy07JnXXsioMByc6P6WKWB/view?usp=drivesdk
 
 ## Home
 
