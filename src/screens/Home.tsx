@@ -7,12 +7,16 @@ import {
   Text,
   TouchableOpacity,
   useColorScheme,
+  Alert,
 } from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 
 import {colors, fonts} from '@constants';
-import {SearchBox, ProgressLoader, Bulletin} from '@components';
-import {getCountryInfo} from 'redux/actions/CountryDetailsActions';
+import {SearchBox, ProgressLoader, Bulletin, EmptyContent} from '@components';
+import {
+  addToFavourites,
+  getCountryInfo,
+} from 'redux/actions/CountryDetailsActions';
 
 type ItemProps = {title: String};
 type SelectorProps = {CountryDetails: Object};
@@ -36,12 +40,16 @@ const Home = () => {
   }, [countryInfo, dispatch]);
 
   useEffect(() => {
-    onSearch();
-  }, [searchQuery]);
+    if (queryLength === 1) {
+      setSearchQuery('');
+    }
+  }, [queryLength]);
 
   const onSearch = () => {
     if (searchQuery.length > 2) {
       dispatch(getCountryInfo(searchQuery));
+    } else {
+      Alert.alert('Warning', 'Minimum 3 characters need to enter');
     }
   };
 
@@ -59,7 +67,7 @@ const Home = () => {
     );
   };
 
-  const countryList = () => {
+  const CountryList = () => {
     return (
       <View style={{width: '100%', flex: 1}}>
         <FlatList
@@ -71,6 +79,41 @@ const Home = () => {
     );
   };
 
+  const addToFavourite = () => {
+    const data = countryInfo?.countryDetails[0];
+    const country = `${data?.name.common} ${data?.flag}`;
+    if (countryInfo?.favourites.includes(country)) {
+      Alert.alert('Warning', 'Already added to favourite');
+    } else {
+      dispatch(addToFavourites(country));
+    }
+  };
+
+  const renderContent = (queryLength: number) => {
+    switch (queryLength) {
+      case 0:
+        return (
+          <ScrollView style={[styles.scrollContainer, darkModeStyle]}>
+            <EmptyContent />
+          </ScrollView>
+        );
+      case 1:
+        return (
+          <ScrollView style={[styles.scrollContainer, darkModeStyle]}>
+            {countryInfo?.countryDetails && (
+              <Bulletin
+                data={countryInfo?.countryDetails}
+                addToFavourite={addToFavourite}
+              />
+            )}
+          </ScrollView>
+        );
+
+      default:
+        return <CountryList />;
+    }
+  };
+
   return (
     <View style={[container, darkModeStyle]}>
       <ProgressLoader loaderFlag={countryInfo.loading} />
@@ -79,16 +122,7 @@ const Home = () => {
         setSearchQuery={setSearchQuery}
         onSearch={onSearch}
       />
-
-      {queryLength !== 1 ? (
-        countryList()
-      ) : (
-        <ScrollView style={[styles.scrollContainer, darkModeStyle]}>
-          {countryInfo?.countryDetails && (
-            <Bulletin data={countryInfo?.countryDetails} />
-          )}
-        </ScrollView>
-      )}
+      {renderContent(queryLength)}
     </View>
   );
 };

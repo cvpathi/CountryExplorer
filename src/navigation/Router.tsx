@@ -3,6 +3,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Home from 'screens/Home';
 import Favourites from 'screens/Favourites';
+import Routes from './Routes';
 
 const {Navigator, Screen} = createBottomTabNavigator();
 
@@ -13,20 +14,20 @@ export default function MyComponent() {
         headerShown: false,
       }}>
       <Screen
-        name="Home"
+        name={Routes.HOME}
         component={Home}
         options={{
-          tabBarLabel: 'Home',
+          tabBarLabel: Routes.HOME,
           tabBarIcon: ({color, size}) => {
             return <Icon name="home" size={size} color={color} />;
           },
         }}
       />
       <Screen
-        name="Favourites"
+        name={Routes.FAVOURITES}
         component={Favourites}
         options={{
-          tabBarLabel: 'Favourites',
+          tabBarLabel: Routes.FAVOURITES,
           tabBarIcon: ({color, size}) => {
             return <Icon name="heart" size={size} color={color} />;
           },

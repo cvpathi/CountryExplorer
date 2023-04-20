@@ -25,14 +25,14 @@ const SearchBox = (props: Prop) => {
         name={'search'}
         size={20}
         color={'#9F9F9F'}
-        style={{paddingHorizontal: 4, alignSelf: 'center'}}
+        style={{paddingHorizontal: 14, alignSelf: 'center'}}
       />
       <TextInput
         placeholder="Search for the country"
         placeholderTextColor={'#9F9F9F'}
         onChangeText={text => setSearchQuery(text)}
         value={searchQuery}
-        style={[fonts.fontBlackNormalMedium, {width: '100%'}]}
+        style={[fonts.fontBlackNormalMedium, {width: '65%'}]}
       />
       <TouchableOpacity style={[styles.uploadContainer]} onPress={onSearch}>
         <Text style={[fonts.fontWhiteBoldMedium]}>{'Search'}</Text>
@@ -48,13 +48,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     marginHorizontal: 24,
     marginVertical: 10,
-    paddingHorizontal: 10,
   },
   uploadContainer: {
-    zIndex: 1,
-    position: 'absolute',
-    right: 0,
-    height: '100%',
     width: 90,
     backgroundColor: colors.DARK_BLUE,
     borderRadius: 10,

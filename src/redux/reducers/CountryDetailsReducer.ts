@@ -1,10 +1,11 @@
 import {
     GET_COUNTRY_DETAILS,
     SET_COUNTRY_DETAILS,
+    ADD_TO_FAVOURITES,
 } from 'redux/actions/CountryDetailsActions';
 
 const initialState = {
-    favourite: [],
+    favourites: [],
 };
 
 const CountryDetails = (state = initialState, action: any) => {
@@ -18,6 +19,13 @@ const CountryDetails = (state = initialState, action: any) => {
         case SET_COUNTRY_DETAILS: {
             return Object.assign({}, state, {
                 countryDetails: action.data,
+                loading: false,
+            });
+        }
+
+        case ADD_TO_FAVOURITES: {
+            return Object.assign({}, state, {
+                favourites: [...state.favourites, action.favourite],
                 loading: false,
             });
         }

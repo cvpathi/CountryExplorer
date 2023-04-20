@@ -1,36 +1,15 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import {colors, fonts} from '@constants';
 import Card from './Card';
+import {infoNeeded} from 'utils/commonUtils';
 
 type Title = {title: string};
 type Value = {value: string};
-type Prop = {data: any};
+type Prop = {data: any; addToFavourite: any};
 
 const Bulletin = (props: Prop) => {
-  const currencyList = (list: Array<any>) => {
-    return list.map(e => Object.values(e).join(' - '));
-  };
-
-  const infoNeeded = (data: any) => {
-    const currencies = Object.values(data?.currencies);
-    return [
-      {title: 'Capital', value: data?.capital[0]},
-      {title: 'Population', value: data?.population},
-      {title: 'Area (in miles and kilometres', value: data?.area},
-      {title: 'Timezone(s)', value: data?.timezones.join('\n')},
-      {
-        title: 'Currency (name and symbol)',
-        value: currencyList(currencies),
-      },
-      {
-        title: 'Languages spoken',
-        value: Object.values(data?.languages).join('\n'),
-      },
-    ];
-  };
   const rightSideColumn = (item: Value) => {
-    // console.log(item);
     return (
       <View style={styles.contentStyle}>
         <Text style={[{textAlign: 'right'}, fonts.fontBlackNormalMedium]}>
@@ -62,6 +41,11 @@ const Bulletin = (props: Prop) => {
             </View>
           ))}
       </View>
+      <TouchableOpacity
+        style={[styles.favouriteContent]}
+        onPress={props.addToFavourite}>
+        <Text style={[fonts.fontWhiteBoldMedium]}>{'Add to favourites'}</Text>
+      </TouchableOpacity>
     </Card>
   );
 };
@@ -75,6 +59,16 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 5,
     marginVertical: 12,
+  },
+  favouriteContent: {
+    width: 140,
+    height: 45,
+    backgroundColor: colors.DARK_BLUE,
+    borderRadius: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    alignSelf: 'center',
+    margin: 12,
   },
 });
 
