@@ -2,18 +2,18 @@
 
 ## Home
 
-<p> 
-   <img src="https://github.com/cvpathi/CountryExplorer/blob/main/assets/Home.png" title="home screenshot">
+<p>
+  <img src="https://github.com/cvpathi/CountryExplorer/blob/main/screenshots/Home.png" width="500" title="screenshot">
 </p>
 
 ## Favourites
 
-<p> 
-   <img src="https://github.com/cvpathi/CountryExplorer/blob/main/assets/fav.png" title="fav screenshot">
+<p>
+  <img src="https://github.com/cvpathi/CountryExplorer/blob/main/screenshots/fav.png" width="500" title="screenshot">
 </p>
 
 ## Search
 
-<p> 
-   <img src="https://github.com/cvpathi/CountryExplorer/blob/main/assets/search.png" title="search screenshot">
+<p>
+  <img src="https://github.com/cvpathi/CountryExplorer/blob/main/screenshots/search.png" width="500" title="screenshot">
 </p>
